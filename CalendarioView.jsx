@@ -240,24 +240,43 @@ function CalendarioView({ atividades, onAtividadeClick }) {
   }
 
   const obterTituloNavegacao = () => {
+    if (!dataAtual) {
+      throw new Error('DataAtual is null or undefined')
+    }
+
     switch (visualizacao) {
       case 'dia':
-        return dataAtual.toLocaleDateString('pt-PT', { 
-          weekday: 'long', 
-          year: 'numeric', 
-          month: 'long', 
-          day: 'numeric' 
-        })
+        try {
+          return dataAtual.toLocaleDateString('pt-PT', { 
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+          })
+        } catch (error) {
+          console.error('Erro ao formatar data para título de navegação:', error)
+          return ''
+        }
       case 'semana':
-        const inicioSemana = new Date(dataAtual)
-        inicioSemana.setDate(dataAtual.getDate() - dataAtual.getDay())
-        const fimSemana = new Date(inicioSemana)
-        fimSemana.setDate(inicioSemana.getDate() + 6)
-        
-        return `${inicioSemana.getDate()} - ${fimSemana.getDate()} de ${meses[dataAtual.getMonth()]} ${dataAtual.getFullYear()}`
+        try {
+          const inicioSemana = new Date(dataAtual.getTime())
+          inicioSemana.setDate(dataAtual.getDate() - dataAtual.getDay())
+          const fimSemana = new Date(inicioSemana.getTime())
+          fimSemana.setDate(inicioSemana.getDate() + 6)
+          
+          return `${inicioSemana.getDate()} - ${fimSemana.getDate()} de ${meses[dataAtual.getMonth()]} ${dataAtual.getFullYear()}`
+        } catch (error) {
+          console.error('Erro ao formatar data para título de navegação:', error)
+          return ''
+        }
       case 'mes':
       default:
-        return `${meses[dataAtual.getMonth()]} ${dataAtual.getFullYear()}`
+        try {
+          return `${meses[dataAtual.getMonth()]} ${dataAtual.getFullYear()}`
+        } catch (error) {
+          console.error('Erro ao formatar data para título de navegação:', error)
+          return ''
+        }
     }
   }
 
