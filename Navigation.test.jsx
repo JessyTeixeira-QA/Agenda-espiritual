@@ -1,38 +1,42 @@
-import { test, assertEquals } from "https://deno.land/std@0.219.0/testing/asserts.ts";
-// Importamos o render para JSX (ajuste a versão do svelte_jsx se necessário)
-import { render } from "https://deno.land/x/svelte_jsx@1.0.0/deno.ts"; 
+// Arquivo: Navigation.test.jsx
 
-// OBS: Ajuste este caminho se o seu componente Navigation não estiver neste local
-// (No seu código original, a Navigation era uma função DENTRO de App.jsx)
+// 1. Deno Test Utils
+import { test, assertEquals } from "https://deno.land/std@0.219.0/testing/asserts.ts";
+// 2. React Imports (Usando esm.sh para compatibilidade com Deno)
+import React from "https://esm.sh/react@18.2.0"; 
+import { renderToString } from "https://esm.sh/react-dom@18.2.0/server";
+
+// 3. Importação do Componente
+// Certifique-se de que a função Navigation está EXPORTADA no App.jsx!
 import { Navigation } from './App.jsx'; 
 
 
 test('Navigation component renders correctly and highlights the active path', () => {
-    // 1. Cenário de Teste: Rota Início ('/')
-    const locationHome = {
-        pathname: '/', 
+    // Cenário de Teste: Rota Programação ('/programacao')
+    const locationProgramacao = {
+        pathname: '/programacao', 
     };
     
-    // 2. Renderização do componente
-    const htmlHome = render(<Navigation location={locationHome} />);
+    // Renderização do componente usando React DOM Server
+    const html = renderToString(<Navigation location={locationProgramacao} />);
 
-    // 3. Asserções (Verificações)
+    // Asserções (Verificações)
     
-    // A classe para o link ativo no seu código é: 'border-blue-500 text-gray-900'
+    // A classe para o link ativo (copiada do seu App.jsx)
     const activeClass = 'border-blue-500 text-gray-900';
     
-    // Verifica se o título principal está presente
-    assertEquals(htmlHome.includes("Pioneira Auxiliar"), true, 
+    // 1. Verifica o título principal
+    assertEquals(html.includes("Pioneira Auxiliar"), true, 
         "Erro: O título 'Pioneira Auxiliar' deve estar presente."
     );
 
-    // Verifica se a rota de 'Início' está destacada (usando a classe de ativo)
-    // O teste procura um fragmento do link de 'Início' que contenha a classe ativa.
-    const expectedActiveLink = `href="/" class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${activeClass}"`;
+    // 2. Verifica se a rota ativa ('Programação') tem a classe de destaque
+    // Nota: A classe 'activeClass' deve aparecer APENAS no link da rota '/programacao'.
+    const expectedActiveLink = `<a href="/programacao" class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${activeClass}"`;
     
     assertEquals(
-        htmlHome.includes(expectedActiveLink), 
+        html.includes(expectedActiveLink), 
         true,
-        "Erro: A rota '/' (Início) não está destacada corretamente."
+        "Erro: A rota '/programacao' não está destacada corretamente."
     );
 });
