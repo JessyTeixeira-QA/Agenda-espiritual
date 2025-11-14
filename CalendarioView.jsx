@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react'; // Remover React
 
 // --- Icon Mockups (lucide-react style) ---
 // Componentes SVG embutidos para atender ao mandato de arquivo único
@@ -14,7 +14,7 @@ const CalendarIcon = (props) => (
 
 // --- UI Component Mockups (simulando shadcn/ui com Tailwind) ---
 const Button = ({ variant = 'default', size = 'default', className = '', onClick, children }) => {
-  let baseClasses = "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none";
+  const baseClasses = "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none";
   
   const variantClasses = {
     default: "bg-blue-600 text-white hover:bg-blue-700 shadow-md",

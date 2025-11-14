@@ -64,7 +64,7 @@ function Configuracoes() {
         }
         
         alert('Dados importados com sucesso! Recarregue a página para ver as alterações.')
-      } catch (error) {
+      } catch (_error) {
         alert('Erro ao importar dados. Verifique se o arquivo está correto.')
       }
     }
