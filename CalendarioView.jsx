@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, List, Grid } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Calendar as CalendarIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
 
@@ -33,6 +33,7 @@ function CalendarioView({ atividades, onAtividadeClick }) {
   }
 
   const obterAtividadesDoDia = (data) => {
+    // Formata a data para 'YYYY-MM-DD' para comparação
     const dataStr = data.toISOString().split('T')[0]
     return atividades.filter(atividade => atividade.data === dataStr)
   }
@@ -136,12 +137,12 @@ function CalendarioView({ atividades, onAtividadeClick }) {
   }
 
   const renderizarVisualizacaoSemana = () => {
-    const diasSemana = obterSemanaAtual()
+    const diasSemanaAtual = obterSemanaAtual() // Renomeado para evitar conflito com a constante diasSemana
 
     
     return (
       <div className="grid grid-cols-7 gap-2">
-        {diasSemana.map((data, index) => {
+        {diasSemanaAtual.map((data, index) => {
           const atividadesDoDia = obterAtividadesDoDia(data)
           const isHoje = data.toDateString() === new Date().toDateString()
           
@@ -257,7 +258,7 @@ function CalendarioView({ atividades, onAtividadeClick }) {
           console.error('Erro ao formatar data para título de navegação:', error)
           return ''
         }
-      case 'semana':
+      case 'semana': { // Corrigido: Envolvido em chaves para evitar no-case-declarations
         try {
           const inicioSemana = new Date(dataAtual.getTime())
           inicioSemana.setDate(dataAtual.getDate() - dataAtual.getDay())
@@ -269,6 +270,7 @@ function CalendarioView({ atividades, onAtividadeClick }) {
           console.error('Erro ao formatar data para título de navegação:', error)
           return ''
         }
+      } // Corrigido: Fechamento das chaves
       case 'mes':
       default:
         try {
@@ -349,4 +351,3 @@ function CalendarioView({ atividades, onAtividadeClick }) {
 }
 
 export default CalendarioView
-

@@ -1,6 +1,6 @@
-import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom'
 import { Calendar, FileText, Home, Settings, BarChart3 } from 'lucide-react'
+// import { useState } from 'react' // Removido: Não está sendo usado neste componente.
 import { Button } from '@/components/ui/button.jsx'
 import Dashboard from './components/Dashboard'
 import Programacao from './components/Programacao'
@@ -69,4 +69,3 @@ function App() {
 }
 
 export default App
-

@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label.jsx'
 import { Textarea } from '@/components/ui/textarea.jsx'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select.jsx'
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog.jsx'
-import ModalConfirmacao from './ModalConfirmacao'
+// import ModalConfirmacao from './ModalConfirmacao' // Removido: Não utilizado.
 
 function EditorCartas() {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -20,10 +20,10 @@ function EditorCartas() {
   const [conteudoEditor, setConteudoEditor] = useState('')
   const [assuntos, setAssuntos] = useState([])
   const [filtroAssunto, setFiltroAssunto] = useState('todos')
-  const [modalConfirmacao, setModalConfirmacao] = useState({
-    aberto: false,
-    cartaParaExcluir: null
-  })
+  // const [modalConfirmacao, setModalConfirmacao] = useState({ // Removido: Não utilizado.
+  //   aberto: false,
+  //   cartaParaExcluir: null
+  // })
   const textareaRef = useRef(null)
 
   const modelosCartas = {
@@ -188,8 +188,8 @@ Contato: [Seu Telefone]`
   const exportarParaPDF = () => {
     if (!cartaAtual) return
     
-    // Criar um elemento temporário para impressão
-    const printWindow = window.open('', '_blank')
+    // CORREÇÃO: Substituído 'window.open' por 'globalThis.open' para evitar o erro 'no-window' no Deno.
+    const printWindow = globalThis.open('', '_blank')
     printWindow.document.write(`
       <html>
         <head>
@@ -514,4 +514,3 @@ Contato: [Seu Telefone]`
 }
 
 export default EditorCartas
-

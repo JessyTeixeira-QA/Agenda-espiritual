@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Download, Upload, Trash2, Save } from 'lucide-react'
+import { Download, Trash2, Save } from 'lucide-react' // 'Upload' foi removido, pois não era usado diretamente como componente
 import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
 import { Input } from '@/components/ui/input.jsx'
@@ -260,4 +260,3 @@ function Configuracoes() {
 }
 
 export default Configuracoes
-
