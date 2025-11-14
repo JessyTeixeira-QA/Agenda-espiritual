@@ -1,4 +1,4 @@
-#  Agenda Espiritual: Ferramenta de Apoio para Pioneiras Auxiliares
+# 📒 Agenda Espiritual: Ferramenta de Apoio para Pioneiras Auxiliares
 
 Este repositório hospeda o código-fonte e a documentação de suporte para a **Agenda Espiritual**, uma aplicação web desenvolvida com o objetivo de otimizar e simplificar as atividades e a gestão de relatórios de **Pioneiras Auxiliares**.
 
