@@ -3,7 +3,6 @@
 // 1. Deno Test Utils
 import { test, assertEquals } from "https://deno.land/std@0.219.0/testing/asserts.ts";
 // 2. React Imports (Usando esm.sh para compatibilidade com Deno)
-import React from "https://esm.sh/react@18.2.0"; 
 import { renderToString } from "https://esm.sh/react-dom@18.2.0/server";
 
 // 3. Importação do Componente
