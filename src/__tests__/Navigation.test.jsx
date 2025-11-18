@@ -1,20 +1,13 @@
-// Navigation.test.jsx
-
-// 1. DIRETIVA DE SILENCIAMENTO
-// deno-lint-ignore no-unused-vars
-import React from "https://esm.sh/react@18";
-
 import { render, screen } from "https://esm.sh/@testing-library/react@14.2.2?deps=react@18,react-dom@18";
 import { MemoryRouter } from "https://esm.sh/react-router-dom@6.23.1?deps=react@18,react-dom@18";
 import Navigation from "file:///home/runner/work/Agenda-espiritual/Agenda-espiritual/src/__tests__/components/Navigation.jsx";
 
-Deno.test("Navigation renders correctly", () => {
+Deno.test("Navegação renderiza corretamente", () => {
   render(
     <MemoryRouter>
       <Navigation />
     </MemoryRouter>
   );
-
   screen.getByText(/Pioneira Auxiliar/);
 });
 
